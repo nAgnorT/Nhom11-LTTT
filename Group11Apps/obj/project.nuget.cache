@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Co4JUip2ryvJz2Z5k4vYt4hpC/EjjJ3zpWKQdCGcSOxY7ExDneHz8sTO6LxxrQWsadIypfBgqzuc3KE5dNguXw==",
+  "dgSpecHash": "LsFhydNR0j/lpGk6Claqz7RkZbLbyftPiVI2l7y0z/A7sZTMW5pmFUJj2nTvCk6g31T1emKGrTg8CzmSaoSMeA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Trong\\source\\repos\\Group11Apps\\Group11Apps\\Group11Apps.csproj",
+  "projectFilePath": "C:\\Users\\Trong\\OneDrive\\Documents\\GitHub\\Nhom11-LTTT\\Group11Apps\\Group11Apps.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Trong\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Trong\\.nuget\\packages\\materialdesigncolors\\1.2.3\\materialdesigncolors.1.2.3.nupkg.sha512",

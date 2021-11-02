@@ -2132,11 +2132,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Trong\\source\\repos\\Group11Apps\\Group11Apps\\Group11Apps.csproj",
+      "projectUniqueName": "C:\\Users\\Trong\\OneDrive\\Documents\\GitHub\\Nhom11-LTTT\\Group11Apps\\Group11Apps.csproj",
       "projectName": "Group11Apps",
-      "projectPath": "C:\\Users\\Trong\\source\\repos\\Group11Apps\\Group11Apps\\Group11Apps.csproj",
+      "projectPath": "C:\\Users\\Trong\\OneDrive\\Documents\\GitHub\\Nhom11-LTTT\\Group11Apps\\Group11Apps.csproj",
       "packagesPath": "C:\\Users\\Trong\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Trong\\source\\repos\\Group11Apps\\Group11Apps\\obj\\",
+      "outputPath": "C:\\Users\\Trong\\OneDrive\\Documents\\GitHub\\Nhom11-LTTT\\Group11Apps\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Trong\\AppData\\Roaming\\NuGet\\NuGet.Config",

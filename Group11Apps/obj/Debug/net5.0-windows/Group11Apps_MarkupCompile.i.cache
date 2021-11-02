@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Trong\source\repos\Group11Apps\Group11Apps\obj\Debug\net5.0-windows\
+C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\
 Group11Apps
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\Trong\source\repos\Group11Apps\Group11Apps\App.xaml
+C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\App.xaml
 5501066346
 
 12-517359156
 2211457229607
 AdminWindow.xaml;InformationWindow.xaml;LamThemWindow.xaml;Login.xaml;MainWindow.xaml;
 
-True
+False
 
