@@ -1,0 +1,89 @@
+﻿<Window x:Class="Group11Apps.LamThemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Group11Apps"
+        mc:Ignorable="d"
+        Title="LamThemWindow" Height="600" Width="1000"
+        WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid Loaded="Grid_Loaded">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Margin="10" Height="50" Orientation="Horizontal" Background="Beige">
+                <StackPanel Width="120">
+                    <Button x:Name="btnUser" Background="{x:Null}" Height="50" Foreground="Black" Content="Quản trị User" Click="btnUser_Click">
+
+                    </Button>
+                </StackPanel>
+                <StackPanel Width="150">
+                    <Button Background="{x:Null}" Height="50" Foreground="Black" Content="Quản lý làm thêm">
+
+                    </Button>
+                </StackPanel>
+                <StackPanel Width="120">
+                    <Button Background="{x:Null}" Height="50" Foreground="Black" Content="Tìm" >
+
+                    </Button>
+                </StackPanel>
+                <StackPanel Width="120">
+
+                </StackPanel>
+                <StackPanel Width="250">
+
+                </StackPanel>
+                <StackPanel Width="140">
+                    <Button x:Name="btnBack" Background="OrangeRed" Height="50" Foreground="Black" Content="Quay lại" Click="btnBack_Click" >
+
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="20,20,20,5" Height="30" Orientation="Horizontal">
+                <TextBlock Text="Từ ngày" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <DatePicker FontSize="18" Foreground="Black" Width="200" DisplayDate="2021-11-02"></DatePicker>
+                <TextBlock x:Name="usernamee" Text="" FontSize="18" Width="20"/>
+                <TextBlock Text="Đến ngày" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <DatePicker FontSize="18" Foreground="Black" Text="" Width="200" DisplayDate="2021-11-02"></DatePicker>
+            </StackPanel>
+            <StackPanel Margin="20,10,20,5" Height="30" Orientation="Horizontal">
+                <TextBlock Text="Từ Giờ" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cboTuGio" Text="" FontSize="18" Foreground="Black" Width="60"/>
+                <ComboBox x:Name="cboTuPhut" Text="" FontSize="18" Foreground="Black" Width="60"/>
+                <TextBlock Margin="100,0,0,0" Text="Đến Giờ" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cboDenGio" Text="" FontSize="18" Foreground="Black" Width="60"/>
+                <ComboBox x:Name="cboDenPhut" Text="" FontSize="18" Foreground="Black" Width="60"/>
+            </StackPanel>
+            <StackPanel Margin="20,10,20,5" Height="30" Orientation="Horizontal">
+                <TextBlock Text="Người Đăng Ký" FontSize="18" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cboNguoiDangKy" Width="400" FontSize="18" Foreground="Black"></ComboBox>
+            </StackPanel>
+            <StackPanel Margin="20,10,20,5" Height="40" Orientation="Horizontal">
+                <TextBlock Text="Lý Do" FontSize="18" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Width="600" FontSize="18" Foreground="Black" TextWrapping="Wrap"></TextBox>
+                
+            </StackPanel>
+            <StackPanel  Margin="20,20,20,0" Height="50" Orientation="Horizontal">
+                <Button x:Name="btnThem" Margin="300,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Thêm" ></Button>
+                <Button x:Name="btnSua" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Sửa"></Button>
+                <Button x:Name="btnXoa" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Xoá" ></Button>
+                
+            </StackPanel>
+            <StackPanel Margin="20,10,20,10">
+                <DataGrid x:Name="DataGridXAML" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" >
+
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="Turquoise"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="Width" Value="137"/>
+                            
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

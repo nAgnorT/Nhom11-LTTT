@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="285897.jpg" />
+    <None Remove="assets\back.jpg" />
+    <None Remove="ICON4801.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="1.2.3" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.11" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.115" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\285897.jpg" />
+    <Resource Include="assets\back.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ICON4801.png" />
+  </ItemGroup>
+
+</Project>
