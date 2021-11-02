@@ -40,10 +40,10 @@
             </StackPanel>
             <StackPanel Margin="20,20,20,5" Height="30" Orientation="Horizontal">
                 <TextBlock Text="Từ ngày" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <DatePicker FontSize="18" Foreground="Black" Width="200" DisplayDate="2021-11-02"></DatePicker>
+                <DatePicker x:Name="dpTuNgay"  FontSize="18" Foreground="Black" Width="200" DisplayDate="2021-11-02"></DatePicker>
                 <TextBlock x:Name="usernamee" Text="" FontSize="18" Width="20"/>
                 <TextBlock Text="Đến ngày" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <DatePicker FontSize="18" Foreground="Black" Text="" Width="200" DisplayDate="2021-11-02"></DatePicker>
+                <DatePicker x:Name="dpDenNgay"  FontSize="18" Foreground="Black" Text="" Width="200" DisplayDate="2021-11-02"></DatePicker>
             </StackPanel>
             <StackPanel Margin="20,10,20,5" Height="30" Orientation="Horizontal">
                 <TextBlock Text="Từ Giờ" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
@@ -59,11 +59,11 @@
             </StackPanel>
             <StackPanel Margin="20,10,20,5" Height="40" Orientation="Horizontal">
                 <TextBlock Text="Lý Do" FontSize="18" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <TextBox Width="600" FontSize="18" Foreground="Black" TextWrapping="Wrap"></TextBox>
+                <TextBox x:Name="txtLyDo" Width="600" FontSize="18" Foreground="Black" TextWrapping="Wrap"></TextBox>
                 
             </StackPanel>
             <StackPanel  Margin="20,20,20,0" Height="50" Orientation="Horizontal">
-                <Button x:Name="btnThem" Margin="300,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Thêm" ></Button>
+                <Button x:Name="btnThem" Margin="300,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Thêm" Click="btnThem_Click" ></Button>
                 <Button x:Name="btnSua" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Sửa"></Button>
                 <Button x:Name="btnXoa" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Xoá" ></Button>
                 

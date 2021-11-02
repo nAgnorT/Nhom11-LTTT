@@ -102,5 +102,29 @@ namespace Group11Apps
             sw.Show();
             Close();
         }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            var tungay = dpTuNgay.SelectedDate.ToString();
+            var dengay = dpDenNgay.SelectedDate.ToString();
+            var tugio = cboTuGio.Text + ":" + cboTuPhut.Text;
+            var dengio = cboDenGio.Text + ":" + cboDenPhut.Text;
+            var nguoidangky = cboNguoiDangKy.Text;
+            var lydo = txtLyDo.Text;
+            DataContext context = new DataContext();
+            context.OpenConnection();
+            string query = "INSERT INTO [LamThem] (TuNgay,DenNgay, TuGio, DenGio, NguoiDangKy,LyDo) VALUES (@tungay,@denngay,@tugio,@dengio,@nguoidangky,@lydo)";
+            SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
+            myCommand.Parameters.Add(new SQLiteParameter("@tungay", tungay));
+            myCommand.Parameters.Add(new SQLiteParameter("@dengay", dengay)); 
+            myCommand.Parameters.Add(new SQLiteParameter("@tugio", tugio)); 
+            myCommand.Parameters.Add(new SQLiteParameter("@dengio", dengio)); 
+            myCommand.Parameters.Add(new SQLiteParameter("@nguoidangky", nguoidangky)); 
+            myCommand.Parameters.Add(new SQLiteParameter("@lydo", lydo)); 
+            context.CloseConnection();
+            myCommand.ExecuteNonQuery();
+            LoadData();
+
+        }
     }
 }

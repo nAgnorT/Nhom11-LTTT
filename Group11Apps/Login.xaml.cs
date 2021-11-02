@@ -107,6 +107,7 @@ namespace Group11Apps
                     myCommand.Parameters.AddWithValue("@trangthai", trangThai);
                     myCommand.Parameters.AddWithValue("@quyen", "Nhân viên");
                     myCommand.Parameters.AddWithValue("@hoten", "1");
+                    
                     context.CloseConnection();
                     myCommand.ExecuteNonQuery();
                     GrantAccess();
