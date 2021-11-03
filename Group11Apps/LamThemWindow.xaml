@@ -38,22 +38,20 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="20,20,20,5" Height="30" Orientation="Horizontal">
+            <StackPanel Margin="20,20,20,5" Height="50" Orientation="Horizontal">
                 <TextBlock Text="Từ ngày" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <DatePicker x:Name="dpTuNgay"  FontSize="18" Foreground="Black" Width="200" DisplayDate="2021-11-02"></DatePicker>
+                <ComboBox x:Name="cboTuNgay" Text="" FontSize="18" Foreground="Black" Width="60"/>
+                <TextBlock x:Name="txtDauCheo" Margin="5,0,5,0" Text="/" FontSize="18" Foreground="Black"/>
+                <ComboBox x:Name="cboTuThang" Text="" FontSize="18" Foreground="Black" Width="60" SelectionChanged="cboTuThang_SelectionChanged"/>
+                <TextBlock x:Name="STT" Text="" FontSize="18" Width="20"/>
                 <TextBlock x:Name="usernamee" Text="" FontSize="18" Width="20"/>
                 <TextBlock Text="Đến ngày" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <DatePicker x:Name="dpDenNgay"  FontSize="18" Foreground="Black" Text="" Width="200" DisplayDate="2021-11-02"></DatePicker>
+                <ComboBox x:Name="cboDenNgay" Text="" FontSize="18" Foreground="Black" Width="60"/>
+                <TextBlock Margin="5,0,5,0" Text="/" FontSize="18" Foreground="Black"/>
+                <ComboBox x:Name="cboDenThang" Text="" FontSize="18" Foreground="Black" Width="60" SelectionChanged="cboDenThang_SelectionChanged"/>
             </StackPanel>
-            <StackPanel Margin="20,10,20,5" Height="30" Orientation="Horizontal">
-                <TextBlock Text="Từ Giờ" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ComboBox x:Name="cboTuGio" Text="" FontSize="18" Foreground="Black" Width="60"/>
-                <ComboBox x:Name="cboTuPhut" Text="" FontSize="18" Foreground="Black" Width="60"/>
-                <TextBlock Margin="100,0,0,0" Text="Đến Giờ" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <ComboBox x:Name="cboDenGio" Text="" FontSize="18" Foreground="Black" Width="60"/>
-                <ComboBox x:Name="cboDenPhut" Text="" FontSize="18" Foreground="Black" Width="60"/>
-            </StackPanel>
-            <StackPanel Margin="20,10,20,5" Height="30" Orientation="Horizontal">
+            
+            <StackPanel Margin="20,10,20,5" Height="50" Orientation="Horizontal">
                 <TextBlock Text="Người Đăng Ký" FontSize="18" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <ComboBox x:Name="cboNguoiDangKy" Width="400" FontSize="18" Foreground="Black"></ComboBox>
             </StackPanel>
@@ -64,12 +62,12 @@
             </StackPanel>
             <StackPanel  Margin="20,20,20,0" Height="50" Orientation="Horizontal">
                 <Button x:Name="btnThem" Margin="300,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Thêm" Click="btnThem_Click" ></Button>
-                <Button x:Name="btnSua" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Sửa"></Button>
-                <Button x:Name="btnXoa" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Xoá" ></Button>
+                <Button x:Name="btnSua" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Sửa" Click="btnSua_Click"></Button>
+                <Button x:Name="btnXoa" Margin="0,0,20,0" Background="Bisque" Width="100" Height="40" Foreground="Black" Content="Xoá" Click="btnXoa_Click" ></Button>
                 
             </StackPanel>
             <StackPanel Margin="20,10,20,10">
-                <DataGrid x:Name="DataGridXAML" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" >
+                <DataGrid x:Name="DataGridXAML" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" SelectionChanged="DataGridXAML_SelectionChanged" >
 
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -78,7 +76,7 @@
                             <Setter Property="BorderThickness" Value="0,0,1,2"/>
                             <Setter Property="BorderBrush" Value="Black"/>
                             <Setter Property="FontSize" Value="16"/>
-                            <Setter Property="Width" Value="137"/>
+                            <Setter Property="Width" Value="155"/>
                             
                         </Style>
                     </DataGrid.Resources>

@@ -14,13 +14,11 @@ namespace Group11Apps
         public int Id { get; set; }
         public string TuNgay {get; set;}
         public string DenNgay { get; set; }
-        public string TuGio { get; set; }
-        public string DenGio { get; set; }
         public string NguoiDangKy { get; set; }
         public string LyDo { get; set; }
         public override string ToString()
         {
-            return $"{TuNgay} - {DenNgay} - {TuGio} - {DenGio} - {NguoiDangKy}-{LyDo}";
+            return $"{TuNgay} - {DenNgay} - {NguoiDangKy}-{LyDo}";
         }
     }
 }

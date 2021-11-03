@@ -139,7 +139,6 @@ C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\bin\Debug\net5.
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\bin\Debug\net5.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\Group11Apps.csproj.AssemblyReference.cache
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\AdminWindow.g.cs
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\InformationWindow.g.cs
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\LamThemWindow.g.cs
@@ -164,3 +163,4 @@ C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\ref\Group11Apps.dll
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\Group11Apps.pdb
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\Group11Apps.genruntimeconfig.cache
+C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\Group11Apps.csproj.AssemblyReference.cache

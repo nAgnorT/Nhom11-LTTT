@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Reflection;
 
 namespace Group11Apps
 {
@@ -25,11 +26,12 @@ namespace Group11Apps
         {
             InitializeComponent();
         }
+        public DateTime now = DateTime.Now;
         private void LoadData()
         {
             DataContext context = new DataContext();
             context.OpenConnection();
-            string query = "Select Id STT, TuNgay [Từ Ngày], DenNgay [Đến Ngày], TuGio [Từ Giờ], DenGio [Đến Giờ], NguoiDangKy [Người Đăng Ký], LyDo [Lý Do]  from LamThem";
+            string query = "Select Id STT, TuNgay [Từ Ngày], DenNgay [Đến Ngày], NguoiDangKy [Người Đăng Ký], LyDo [Lý Do]  from LamThem";
             SQLiteCommand createCommand = new SQLiteCommand(query, context.myConnection);
             createCommand.ExecuteNonQuery();
             SQLiteDataAdapter dataAdp = new SQLiteDataAdapter(createCommand);
@@ -39,40 +41,50 @@ namespace Group11Apps
             dataAdp.Update(dt);
             context.CloseConnection();
             usernamee.Visibility = Visibility.Hidden;
+            
         }
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        private void LoadCboDate()
         {
-            LoadData();
-            for (int i = 0; i < 24;)
+            cboDenNgay.Items.Clear();
+            cboTuNgay.Items.Clear();
+            int day = now.Day;
+            for(int i =day; i < 31;)
             {
                 if (i < 10)
                 {
                     string add = "0" + i.ToString();
-                    cboTuGio.Items.Add(add);
-                    cboDenGio.Items.Add(add);
+                    cboTuNgay.Items.Add(add);
+                    cboDenNgay.Items.Add(add);
                 }
                 else
                 {
-                    cboTuGio.Items.Add(i);
-                    cboDenGio.Items.Add(i);
+                    cboTuNgay.Items.Add(i);
+                    cboDenNgay.Items.Add(i);
                 }
                 i++;
             }
-            for (int j = 0; j < 60;)
-            {
-                if (j < 10)
-                {
-                    string add = "0" + j.ToString();
-                    cboTuPhut.Items.Add(add);
-                    cboDenPhut.Items.Add(add);
-                }
-                else
-                {
-                    cboTuPhut.Items.Add(j);
-                    cboDenPhut.Items.Add(j);
-                }
-                j++;
-            }
+            
+        }
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadData();
+            LoadCboDate();
+            cboTuThang.Items.Clear();
+            cboDenThang.Items.Clear();
+            cboTuThang.Items.Add(now.Month);
+            cboTuThang.Items.Add(now.Month + 1);
+            cboDenThang.Items.Add(now.Month);
+            cboDenThang.Items.Add(now.Month + 1);
+            btnThem.IsEnabled = true;
+            btnSua.IsEnabled = false;
+            btnXoa.IsEnabled = false;
+            int day = now.Day;
+            cboTuNgay.SelectedItem = "0" + day.ToString();
+            cboDenNgay.SelectedItem = "0" + day.ToString();
+            cboTuThang.SelectedItem = now.Month;
+            cboDenThang.SelectedItem = now.Month;
+            
+             
             DataContext context = new DataContext();
             context.OpenConnection();
             string query = "select HoTen from Users";
@@ -86,6 +98,7 @@ namespace Group11Apps
             }
             context.CloseConnection();
         }
+        
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -105,26 +118,201 @@ namespace Group11Apps
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            var tungay = dpTuNgay.SelectedDate.ToString();
-            var dengay = dpDenNgay.SelectedDate.ToString();
-            var tugio = cboTuGio.Text + ":" + cboTuPhut.Text;
-            var dengio = cboDenGio.Text + ":" + cboDenPhut.Text;
-            var nguoidangky = cboNguoiDangKy.Text;
-            var lydo = txtLyDo.Text;
-            DataContext context = new DataContext();
-            context.OpenConnection();
-            string query = "INSERT INTO [LamThem] (TuNgay,DenNgay, TuGio, DenGio, NguoiDangKy,LyDo) VALUES (@tungay,@denngay,@tugio,@dengio,@nguoidangky,@lydo)";
-            SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
-            myCommand.Parameters.Add(new SQLiteParameter("@tungay", tungay));
-            myCommand.Parameters.Add(new SQLiteParameter("@dengay", dengay)); 
-            myCommand.Parameters.Add(new SQLiteParameter("@tugio", tugio)); 
-            myCommand.Parameters.Add(new SQLiteParameter("@dengio", dengio)); 
-            myCommand.Parameters.Add(new SQLiteParameter("@nguoidangky", nguoidangky)); 
-            myCommand.Parameters.Add(new SQLiteParameter("@lydo", lydo)); 
-            context.CloseConnection();
-            myCommand.ExecuteNonQuery();
+            var tuNgay = cboTuNgay.Text + txtDauCheo.Text+cboTuThang.Text;
+            var denNgay = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            var nguoiDangky = cboNguoiDangKy.Text;
+            var lyDo = txtLyDo.Text;
+            using (DataContext context = new DataContext())
+            {
+                bool overtimeFound = context.LamThem.Any(extra => extra.DenNgay == denNgay && extra.TuNgay == tuNgay && extra.NguoiDangKy == nguoiDangky);
+                if(overtimeFound)
+                {
+                    MessageBox.Show("Không hợp lệ");
+                }    
+                else if (tuNgay=="" || denNgay=="" || nguoiDangky=="")
+                {
+                    MessageBox.Show("Không hợp lệ");
+                }
+                else
+                {
+                    context.OpenConnection();
+                    string query = "INSERT INTO [LamThem] (`TuNgay`, `DenNgay, `NguoiDangKy`, `LyDo`) VALUES (@tungay, @denngay, @nguoidangky, @lydo)";
+                    SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
+                    myCommand.Parameters.AddWithValue("@tungay", tuNgay);
+                    myCommand.Parameters.AddWithValue("@dengay", denNgay);
+                    myCommand.Parameters.AddWithValue("@nguoidangky", nguoiDangky);
+                    myCommand.Parameters.AddWithValue("@lydo", lyDo);
+                    myCommand.ExecuteNonQuery();
+                    context.CloseConnection();
+                    
+                }
+            }    
+            
             LoadData();
 
+        }
+
+        private void cboTuThang_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboTuThang.SelectedItem.ToString()=="12")
+            {
+                cboTuNgay.Items.Clear();
+                for (int i = 1; i < 32;)
+                {
+                    if (i < 10)
+                    {
+                        cboTuNgay.Items.Add("0" + i.ToString());
+                    }
+                    else
+                    {
+                        cboTuNgay.Items.Add(i);
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                cboTuNgay.Items.Clear();
+                for (int i = now.Day; i < 31;)
+                {
+                    if (i < 10)
+                    {
+                        cboTuNgay.Items.Add("0" + i.ToString());
+                    }
+                    else
+                    {
+                        cboTuNgay.Items.Add(i);
+                    }
+                    i++;
+                }
+            }    
+        }
+
+        private void cboDenThang_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboDenThang.SelectedItem.ToString() == "12")
+            {
+                cboDenNgay.Items.Clear();
+                for (int i = 1; i < 32;)
+                {
+                    if (i < 10)
+                    {
+                        cboDenNgay.Items.Add("0" + i.ToString());
+                    }
+                    else
+                    {
+                        cboDenNgay.Items.Add(i);
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                cboDenNgay.Items.Clear();
+                for (int i = now.Day; i < 31;)
+                {
+                    if (i < 10)
+                    {
+                        cboDenNgay.Items.Add("0" + i.ToString());
+                    }
+                    else
+                    {
+                        cboDenNgay.Items.Add(i);
+                    }
+                    i++;
+                }
+            }
+        }
+
+        private void DataGridXAML_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dg = sender as DataGrid;
+            DataRowView dr = dg.SelectedItem as DataRowView;
+            if (dr != null)
+            {
+                string[] fromDate = dr["Từ Ngày"].ToString().Split("/");
+                string[] toDate = dr["Đến Ngày"].ToString().Split("/");
+                cboNguoiDangKy.SelectedItem = dr["Người Đăng Ký"];
+                txtLyDo.Text = dr["Lý Do"].ToString();
+                cboTuNgay.SelectedItem = fromDate[0];
+                cboTuThang.SelectedItem = fromDate[1];
+                cboDenNgay.SelectedItem = toDate[0];
+                cboDenThang.SelectedItem = toDate[1];
+                btnThem.IsEnabled = false;
+                btnSua.IsEnabled = true;
+                btnXoa.IsEnabled = true;
+                STT.Text = dr["STT"].ToString();
+            }
+        }
+
+        private void btnSua_Click(object sender, RoutedEventArgs e)
+        {
+            var tuNgay = cboTuNgay.Text + txtDauCheo.Text + cboTuThang.Text;
+            var denNgay = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            var nguoiDangky = cboNguoiDangKy.Text;
+            var lyDo = txtLyDo.Text;
+            int stt = int.Parse(STT.Text);
+            using (DataContext context = new DataContext())
+            {
+                bool overtimeFound = context.LamThem.Any(extra => extra.DenNgay == denNgay && extra.TuNgay == tuNgay && extra.NguoiDangKy == nguoiDangky);
+                if (overtimeFound)
+                {
+                    MessageBox.Show("Không hợp lệ");
+                }
+                else if (tuNgay == "/" || denNgay == "/" || nguoiDangky == "")
+                {
+                    MessageBox.Show("Không hợp lệ");
+                }
+                else
+                {
+                    context.OpenConnection();
+                    string query = "UPDATE LamThem SET TuNgay=@tungay ,DenNgay=@denngay, NguoiDangKy=@nguoidangky, LyDo=@lydo Where Id=@stt";
+                    SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
+                    myCommand.Parameters.AddWithValue("@tungay", tuNgay);
+                    myCommand.Parameters.AddWithValue("@dengay", denNgay);
+                    myCommand.Parameters.AddWithValue("@nguoidangky", nguoiDangky);
+                    myCommand.Parameters.AddWithValue("@lydo", lyDo);
+                    myCommand.Parameters.AddWithValue("@stt", stt);
+                    myCommand.ExecuteNonQuery();
+                    context.CloseConnection();
+
+                }
+            }
+
+            LoadData();
+        }
+
+        private void btnXoa_Click(object sender, RoutedEventArgs e)
+        {
+            var tuNgay = cboTuNgay.Text + txtDauCheo.Text + cboTuThang.Text;
+            var denNgay = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            var nguoiDangky = cboNguoiDangKy.Text;
+            var lyDo = txtLyDo.Text;
+            int stt = int.Parse(STT.Text);
+            using (DataContext context = new DataContext())
+            {
+                bool overtimeFound = context.LamThem.Any(extra => extra.Id == stt);
+                if (overtimeFound)
+                {
+                    context.OpenConnection();
+                    string query = "DELETE FROM LamThem WHERE Id=@stt";
+                    SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
+                    myCommand.Parameters.AddWithValue("@stt", stt);
+                    myCommand.ExecuteNonQuery();
+                    context.CloseConnection();
+                    
+                }
+                else if (tuNgay == "/"|| denNgay == "/" || nguoiDangky == "")
+                {
+                    MessageBox.Show("Không hợp lệ");
+                }
+                else
+                {
+                    MessageBox.Show("Không hợp lệ");
+
+                }
+                LoadData();
+            }
         }
     }
 }
