@@ -118,8 +118,10 @@ namespace Group11Apps
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            var tuNgay = cboTuNgay.Text + txtDauCheo.Text+cboTuThang.Text;
-            var denNgay = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            TuNgay.Text = cboTuNgay.Text + txtDauCheo.Text+cboTuThang.Text;
+            DenNgay.Text = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            var tuNgay = TuNgay.Text;
+            var denNgay = DenNgay.Text;
             var nguoiDangky = cboNguoiDangKy.Text;
             var lyDo = txtLyDo.Text;
             using (DataContext context = new DataContext())
@@ -247,8 +249,10 @@ namespace Group11Apps
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            var tuNgay = cboTuNgay.Text + txtDauCheo.Text + cboTuThang.Text;
-            var denNgay = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            TuNgay.Text = cboTuNgay.Text + txtDauCheo.Text + cboTuThang.Text;
+            DenNgay.Text = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            var tuNgay = TuNgay.Text;
+            var denNgay = DenNgay.Text;
             var nguoiDangky = cboNguoiDangKy.Text;
             var lyDo = txtLyDo.Text;
             int stt = int.Parse(STT.Text);
@@ -284,8 +288,10 @@ namespace Group11Apps
 
         private void btnXoa_Click(object sender, RoutedEventArgs e)
         {
-            var tuNgay = cboTuNgay.Text + txtDauCheo.Text + cboTuThang.Text;
-            var denNgay = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            TuNgay.Text = cboTuNgay.Text + txtDauCheo.Text + cboTuThang.Text;
+            DenNgay.Text = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            var tuNgay = TuNgay.Text;
+            var denNgay = DenNgay.Text;
             var nguoiDangky = cboNguoiDangKy.Text;
             var lyDo = txtLyDo.Text;
             int stt = int.Parse(STT.Text);

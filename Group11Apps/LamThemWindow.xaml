@@ -43,8 +43,10 @@
                 <ComboBox x:Name="cboTuNgay" Text="" FontSize="18" Foreground="Black" Width="60"/>
                 <TextBlock x:Name="txtDauCheo" Margin="5,0,5,0" Text="/" FontSize="18" Foreground="Black"/>
                 <ComboBox x:Name="cboTuThang" Text="" FontSize="18" Foreground="Black" Width="60" SelectionChanged="cboTuThang_SelectionChanged"/>
-                <TextBlock x:Name="STT" Text="" FontSize="18" Width="20"/>
+                <TextBlock x:Name="STT" Text="" FontSize="18" Width="20" Visibility="Hidden"/>
                 <TextBlock x:Name="usernamee" Text="" FontSize="18" Width="20"/>
+                <TextBlock x:Name="TuNgay" Text="" FontSize="18" Width="20" Visibility="Hidden"/>
+                <TextBlock x:Name="DenNgay" Text="" FontSize="18" Width="20" Visibility="Hidden"/>
                 <TextBlock Text="Đến ngày" FontSize="18" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                 <ComboBox x:Name="cboDenNgay" Text="" FontSize="18" Foreground="Black" Width="60"/>
                 <TextBlock Margin="5,0,5,0" Text="/" FontSize="18" Foreground="Black"/>
