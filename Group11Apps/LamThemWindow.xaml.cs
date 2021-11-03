@@ -12,8 +12,8 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Reflection;
 
 namespace Group11Apps
 {
@@ -118,8 +118,8 @@ namespace Group11Apps
 
         private void btnThem_Click(object sender, RoutedEventArgs e)
         {
-            TuNgay.Text = cboTuNgay.Text + txtDauCheo.Text+cboTuThang.Text;
-            DenNgay.Text = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            TuNgay.Text = cboTuNgay.Text + "/"+cboTuThang.Text;
+            DenNgay.Text = cboDenNgay.Text + "/" + cboDenThang.Text;
             var tuNgay = TuNgay.Text;
             var denNgay = DenNgay.Text;
             var nguoiDangky = cboNguoiDangKy.Text;
@@ -131,17 +131,18 @@ namespace Group11Apps
                 {
                     MessageBox.Show("Không hợp lệ");
                 }    
-                else if (tuNgay=="" || denNgay=="" || nguoiDangky=="")
+                else if (tuNgay=="/" || denNgay=="/" || nguoiDangky=="")
                 {
                     MessageBox.Show("Không hợp lệ");
                 }
                 else
                 {
                     context.OpenConnection();
-                    string query = "INSERT INTO [LamThem] (`TuNgay`, `DenNgay, `NguoiDangKy`, `LyDo`) VALUES (@tungay, @denngay, @nguoidangky, @lydo)";
+                    string query = "INSERT INTO LamThem (`TuNgay`, `DenNgay`, `NguoiDangKy`, `LyDo`) VALUES (@tungay, @denngay, @nguoidangky, @lydo)";
                     SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
+                    
                     myCommand.Parameters.AddWithValue("@tungay", tuNgay);
-                    myCommand.Parameters.AddWithValue("@dengay", denNgay);
+                    myCommand.Parameters.AddWithValue("@denngay", denNgay);
                     myCommand.Parameters.AddWithValue("@nguoidangky", nguoiDangky);
                     myCommand.Parameters.AddWithValue("@lydo", lyDo);
                     myCommand.ExecuteNonQuery();
@@ -249,8 +250,8 @@ namespace Group11Apps
 
         private void btnSua_Click(object sender, RoutedEventArgs e)
         {
-            TuNgay.Text = cboTuNgay.Text + txtDauCheo.Text + cboTuThang.Text;
-            DenNgay.Text = cboDenNgay.Text + txtDauCheo.Text + cboDenThang.Text;
+            TuNgay.Text = cboTuNgay.Text + "/" + cboTuThang.Text;
+            DenNgay.Text = cboDenNgay.Text + "/" + cboDenThang.Text;
             var tuNgay = TuNgay.Text;
             var denNgay = DenNgay.Text;
             var nguoiDangky = cboNguoiDangKy.Text;
@@ -273,7 +274,7 @@ namespace Group11Apps
                     string query = "UPDATE LamThem SET TuNgay=@tungay ,DenNgay=@denngay, NguoiDangKy=@nguoidangky, LyDo=@lydo Where Id=@stt";
                     SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
                     myCommand.Parameters.AddWithValue("@tungay", tuNgay);
-                    myCommand.Parameters.AddWithValue("@dengay", denNgay);
+                    myCommand.Parameters.AddWithValue("@denngay", denNgay);
                     myCommand.Parameters.AddWithValue("@nguoidangky", nguoiDangky);
                     myCommand.Parameters.AddWithValue("@lydo", lyDo);
                     myCommand.Parameters.AddWithValue("@stt", stt);
@@ -308,7 +309,7 @@ namespace Group11Apps
                     context.CloseConnection();
                     
                 }
-                else if (tuNgay == "/"|| denNgay == "/" || nguoiDangky == "")
+                else if (tuNgay == "/" || denNgay == "/" || nguoiDangky == "")
                 {
                     MessageBox.Show("Không hợp lệ");
                 }
