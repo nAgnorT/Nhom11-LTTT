@@ -164,3 +164,5 @@ C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\Group11Apps.pdb
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\Group11Apps.genruntimeconfig.cache
 C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\Group11Apps.csproj.AssemblyReference.cache
+C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\SearchWindow.g.cs
+C:\Users\Trong\OneDrive\Documents\GitHub\Nhom11-LTTT\Group11Apps\obj\Debug\net5.0-windows\SearchWindow.baml

@@ -80,40 +80,5 @@ namespace Group11Apps
             txtUsername.Focus();
         }
         
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
-        {
-            var username = txtUsername.Text;
-            var password = txtPassword.Password;
-            using (DataContext context = new DataContext())
-            {
-                bool userfound = context.Users.Any(user => user.Username == username);
-                if (txtUsername.Text == "" || txtPassword.Password == "")
-                {
-                    MessageBox.Show("Tên tài khoản hoặc mật khẩu không được bỏ trống");
-                    txtUsername.Focus();
-                }
-                else if (userfound)
-                {
-                    MessageBox.Show("Tài khoản đã tồn tại");
-                    clearr();
-                }    
-                else
-                {
-                    string query = "INSERT INTO Users (`HoTen`, `Username`,`Password`,`TrangThai`,`Quyen`) VALUES(@hoten,@username,@password,@trangthai,@quyen)";
-                    SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
-                    context.OpenConnection();
-                    myCommand.Parameters.AddWithValue("@username", username);
-                    myCommand.Parameters.AddWithValue("@password", password);
-                    myCommand.Parameters.AddWithValue("@trangthai", trangThai);
-                    myCommand.Parameters.AddWithValue("@quyen", "Nhân viên");
-                    myCommand.Parameters.AddWithValue("@hoten", "1");
-                    
-                    context.CloseConnection();
-                    myCommand.ExecuteNonQuery();
-                    GrantAccess();
-                    Close();
-                }
-            }
-        }
     }
 }

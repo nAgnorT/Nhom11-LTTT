@@ -44,6 +44,7 @@ namespace Group11Apps
         {
             cboQuyen.Items.Add("Admin");
             cboQuyen.Items.Add("Nhân viên");
+            cboQuyen.SelectedItem = "Nhân Viên";
             LoadData();
             btnXoa.IsEnabled = false;
             btnBan.IsEnabled = false;
@@ -56,7 +57,7 @@ namespace Group11Apps
             DataRowView dr = dg.SelectedItem as DataRowView;
             if (dr != null)
             {
-                lblUsername.Text = dr["Tài Khoản"].ToString();
+                txtUsername.Text = dr["Tài Khoản"].ToString();
                 txtHoTen.Text = dr["Họ và Tên"].ToString();
                 cboQuyen.Text = dr["Chức vụ"].ToString();
                 btnXoa.IsEnabled = true;
@@ -64,6 +65,7 @@ namespace Group11Apps
                 btnSua.IsEnabled = true;
                 btnActive.IsEnabled = true;
             }
+            txtUsername.IsEnabled = false;
         }
 
         private void cboQuyen_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -75,7 +77,7 @@ namespace Group11Apps
         {
             DataContext context = new DataContext();
             context.OpenConnection();
-            string name = lblUsername.Text;
+            string name = txtUsername.Text;
             string quyen = cboQuyen.Text;
             string hoten = txtHoTen.Text;
             string query = "UPDATE Users SET HoTen = @hoten, Quyen = @quyen Where Username=@name";
@@ -92,7 +94,7 @@ namespace Group11Apps
         {
             DataContext context = new DataContext();
             context.OpenConnection();
-            string name = lblUsername.Text;
+            string name = txtUsername.Text;
             string query = "UPDATE Users SET TrangThai='Banned' Where Username=@name";
             SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
             myCommand.Parameters.AddWithValue("@name", name);
@@ -105,7 +107,7 @@ namespace Group11Apps
         {
             DataContext context = new DataContext();
             context.OpenConnection();
-            string name = lblUsername.Text;
+            string name = txtUsername.Text;
             string query = "UPDATE Users SET TrangThai='Active' Where Username=@name";
             SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
             myCommand.Parameters.AddWithValue("@name", name);
@@ -118,7 +120,7 @@ namespace Group11Apps
         {
             DataContext context = new DataContext();
             context.OpenConnection();
-            string name = lblUsername.Text;
+            string name = txtUsername.Text;
             string query = "DELETE From Users Where Username=@name";
             SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
             myCommand.Parameters.AddWithValue("@name", name);
@@ -141,6 +143,41 @@ namespace Group11Apps
             sw.usernamee.Text = usernamee.Text;
             sw.Show();
             Close();
+        }
+
+        private void btnThem_Click(object sender, RoutedEventArgs e)
+        {
+            var username = txtUsername.Text;
+            string quyen = cboQuyen.Text;
+            string hoten = txtHoTen.Text;
+            using (DataContext context = new DataContext())
+            {
+                bool userfound = context.Users.Any(user => user.Username == username);
+                if (txtUsername.Text == "" || txtHoTen.Text=="")
+                {
+                    MessageBox.Show("Tên tài khoản, họ tên không được bỏ trống");
+                    txtUsername.Focus();
+                }
+                else if (userfound)
+                {
+                    MessageBox.Show("Tài khoản đã tồn tại");
+                }
+                else
+                {
+                    string query = "INSERT INTO Users (`HoTen`, `Username`,`Password`,`TrangThai`,`Quyen`) VALUES(@hoten,@username,@password,@trangthai,@quyen)";
+                    SQLiteCommand myCommand = new SQLiteCommand(query, context.myConnection);
+                    context.OpenConnection();
+                    myCommand.Parameters.AddWithValue("@username", username);
+                    myCommand.Parameters.AddWithValue("@password", "1");
+                    myCommand.Parameters.AddWithValue("@trangthai", "Active");
+                    myCommand.Parameters.AddWithValue("@quyen", quyen);
+                    myCommand.Parameters.AddWithValue("@hoten", hoten );
+
+                    context.CloseConnection();
+                    myCommand.ExecuteNonQuery();
+                    LoadData();
+                }
+            }
         }
     }
 }
